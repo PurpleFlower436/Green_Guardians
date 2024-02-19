@@ -12,14 +12,16 @@ class titleScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "Rexs World",
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
+          Center(
+            child: Text(
+              "Rexs World",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 160),
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,
