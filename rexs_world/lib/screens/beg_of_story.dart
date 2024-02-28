@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rexs_world/screens/recycle_sorter.dart';
+import 'package:rexs_world/screens/recyle_sorter_load_screen.dart';
 
 class beg_of_story extends StatelessWidget {
   const beg_of_story({super.key});
@@ -26,7 +27,7 @@ class beg_of_story extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => recycleSorter()));
+                  MaterialPageRoute(builder: (context) => GameScreen()));
             },
             child: Text("Play"),
           ),
