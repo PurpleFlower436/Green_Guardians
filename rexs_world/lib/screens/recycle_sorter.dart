@@ -19,6 +19,7 @@ class recycleSorter extends FlameGame with PanDetector {
 
     player = Player();
     add(player);
+    add(NatureBackground());
   }
 
   @override
@@ -43,5 +44,14 @@ class Player extends SpriteComponent with HasGameRef<recycleSorter> {
 
   void move(Vector2 delta) {
     position.add(delta);
+  }
+}
+
+class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    sprite = await gameRef.loadSprite('game_background.jpeg');
+    size = gameRef.size;
   }
 }
