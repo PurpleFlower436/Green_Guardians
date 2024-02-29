@@ -31,18 +31,30 @@ class recycleSorter extends FlameGame with PanDetector, KeyboardEvents {
     Set<LogicalKeyboardKey> keysPressed,
   ) {
     final isKeyDown = event is RawKeyDownEvent;
+    // Determine if the key event is a key down event
 
+    // Check if the left arrow key is pressed
     if (isKeyDown && keysPressed.contains(LogicalKeyboardKey.altLeft)) {
+      // move player to the left
       player.moveLeft();
+
+      // Check if right arrow key is pressed
     } else if (isKeyDown && keysPressed.contains(LogicalKeyboardKey.altRight)) {
+      // move player to the right
       player.moveRight();
+      // Since we hadnled the key event, return handled
+      return KeyEventResult.handled;
     }
-    return KeyEventResult.handled;
+    //If the key event doesnt match any of the conditions above,
+    // return 'ignored' to indicate that the event was not handled
+    return KeyEventResult.ignored;
   }
 
   @override
   void onPanUpdate(DragUpdateInfo info) {
-    player.move(info.delta.global);
+    super.onPanUpdate(info);
+
+    player.position.x += info.delta.global.x;
   }
 }
 
@@ -62,10 +74,6 @@ class Player extends SpriteComponent with HasGameRef<recycleSorter> {
 
   void moveRight() {
     position.x += 10;
-  }
-
-  void move(Vector2 delta) {
-    position.add(delta);
   }
 }
 
