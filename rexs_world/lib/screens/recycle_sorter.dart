@@ -3,8 +3,7 @@
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:flutter/material.dart';
 //import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flame/input.dart';
@@ -19,9 +18,6 @@ class recycleSorter extends FlameGame with PanDetector, KeyboardEvents {
   @override
   Future<void> onLoad() async {
     await super.onLoad(); // loads the game
-
-    if (kIsWeb) {
-    } else if (Platform.isAndroid || Platform.isIOS) {}
 
     player = Player();
 
