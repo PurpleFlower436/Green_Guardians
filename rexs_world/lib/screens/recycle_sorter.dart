@@ -85,3 +85,6 @@ class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
     size = gameRef.size;
   }
 }
+
+class recylable_items extends SpriteAnimationComponent
+    with HasGameRef<recycleSorter> {}
