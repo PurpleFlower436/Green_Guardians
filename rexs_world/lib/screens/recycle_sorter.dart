@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:ui';
-
+import 'package:tuple/tuple.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
@@ -99,8 +99,27 @@ class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
   }
 }
 
-class beer_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
-  beer_bottle({
+class recyclable_items extends SpriteComponent with HasGameRef<recycleSorter> {
+  final List<Tuple2<String, Vector2>> sprite_list_with_sizes = [
+    Tuple2('green_bottle.png', Vector2(18, 61)),
+    Tuple2('large_can.png', Vector2(25, 42)),
+    Tuple2('laundry_soap_bottle.png', Vector2(39, 62)),
+    Tuple2('mason_jar.png', Vector2(26, 61)),
+    Tuple2('newspaper.png', Vector2(56, 62)),
+    Tuple2('piza_box.png', Vector2(61, 31)),
+    Tuple2('plastic_bottle.png', Vector2(19, 62)),
+    Tuple2('plastic_jug.png', Vector2(43, 62)),
+    Tuple2('red_soda_can.png', Vector2(21, 42)),
+    Tuple2('small_tuna_can.png', Vector2(24, 35)),
+    Tuple2('spray_can.png', Vector2(21, 46)),
+    Tuple2('brown_bag.png', Vector2(42, 62)),
+    Tuple2('cardboard_box.png', Vector2(56, 62)),
+    Tuple2('foam_cup.png', Vector2(31, 47)),
+    Tuple2('broken_cup.png', Vector2(56, 62)),
+    Tuple2('beer_bottle.png', Vector2(31, 47)),
+  ];
+
+  recyclable_items({
     super.position,
   }) : super(
           size: Vector2(18, 61),
