@@ -65,10 +65,36 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/recycle_bin.png
-     - assets/images/game_background.jpeg
-     - assets/images/spritesheet_poof_orange.png
-     - assets/images/beer_bottle.png
+    - assets/images/recycle_bin.png
+    - assets/images/game_background.jpeg
+    - assets/images/spritesheet_poof_orange.png
+    - assets/images/beer_bottle.png
+
+    - assets/images/green_bottle.png
+    - assets/images/large_can.png
+    - assets/images/laundry_soap_bottle.png
+    - assets/images/mason_jar.png
+    - assets/images/newspaper.png
+    - assets/images/pizza_box.png
+    - assets/images/plastic_bottle.png
+    - assets/images/plastic_jug.png
+    - assets/images/red_soda_can.png
+    - assets/images/small_tuna_can.png
+    - assets/images/spray_can.png
+    - assets/images/brown_bag.png
+    - assets/images/cardboard_box.png
+    - assets/images/foam_cup.png
+    - assets/images/broken_cup.png
+
+
+
+
+
+
+
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
