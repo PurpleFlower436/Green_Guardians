@@ -67,7 +67,7 @@ flutter:
      - assets/images/recycle_bin.png
      - assets/images/game_background.jpeg
      - assets/images/spritesheet_poof_orange.png
-     - assets/images/recycle_items.png
+     - assets/images/beer_bottle.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

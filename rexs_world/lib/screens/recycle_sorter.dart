@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ui';
+
+import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -23,6 +26,16 @@ class recycleSorter extends FlameGame with PanDetector, KeyboardEvents {
 
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return beer_bottle();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -beer_bottle.enemySize),
+      ),
+    );
   }
 
   @override
@@ -86,5 +99,31 @@ class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
   }
 }
 
-class recylable_items extends SpriteAnimationComponent
-    with HasGameRef<recycleSorter> {}
+class beer_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
+  beer_bottle({
+    super.position,
+  }) : super(
+          size: Vector2(18, 61),
+          anchor: Anchor.center,
+        );
+
+  static const enemySize = 40.0;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('beer_bottle.png');
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * 300;
+
+    if (position.y > game.size.y) {
+      removeFromParent();
+    }
+  }
+}
