@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:ui';
-import 'package:tuple/tuple.dart';
+import 'dart:math';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
@@ -34,6 +34,46 @@ class recycleSorter extends FlameGame with PanDetector, KeyboardEvents {
         },
         period: 1,
         area: Rectangle.fromLTWH(0, 0, size.x, -beer_bottle.enemySize),
+      ),
+    );
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return plastic_bottle();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -plastic_bottle.enemySize),
+      ),
+    );
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return green_bottle();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -green_bottle.enemySize),
+      ),
+    );
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return soda_can();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -soda_can.enemySize),
+      ),
+    );
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return newspaper();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -newspaper.enemySize),
       ),
     );
   }
@@ -99,27 +139,8 @@ class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
   }
 }
 
-class recyclable_items extends SpriteComponent with HasGameRef<recycleSorter> {
-  final List<Tuple2<String, Vector2>> sprite_list_with_sizes = [
-    Tuple2('green_bottle.png', Vector2(18, 61)),
-    Tuple2('large_can.png', Vector2(25, 42)),
-    Tuple2('laundry_soap_bottle.png', Vector2(39, 62)),
-    Tuple2('mason_jar.png', Vector2(26, 61)),
-    Tuple2('newspaper.png', Vector2(56, 62)),
-    Tuple2('piza_box.png', Vector2(61, 31)),
-    Tuple2('plastic_bottle.png', Vector2(19, 62)),
-    Tuple2('plastic_jug.png', Vector2(43, 62)),
-    Tuple2('red_soda_can.png', Vector2(21, 42)),
-    Tuple2('small_tuna_can.png', Vector2(24, 35)),
-    Tuple2('spray_can.png', Vector2(21, 46)),
-    Tuple2('brown_bag.png', Vector2(42, 62)),
-    Tuple2('cardboard_box.png', Vector2(56, 62)),
-    Tuple2('foam_cup.png', Vector2(31, 47)),
-    Tuple2('broken_cup.png', Vector2(56, 62)),
-    Tuple2('beer_bottle.png', Vector2(31, 47)),
-  ];
-
-  recyclable_items({
+class beer_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
+  beer_bottle({
     super.position,
   }) : super(
           size: Vector2(18, 61),
@@ -133,6 +154,122 @@ class recyclable_items extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('beer_bottle.png');
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * 300;
+
+    if (position.y > game.size.y) {
+      removeFromParent();
+    }
+  }
+}
+
+class plastic_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
+  plastic_bottle({
+    super.position,
+  }) : super(
+          size: Vector2(19, 62),
+          anchor: Anchor.center,
+        );
+
+  static const enemySize = 40.0;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('plastic_bottle.png');
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * 300;
+
+    if (position.y > game.size.y) {
+      removeFromParent();
+    }
+  }
+}
+
+class green_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
+  green_bottle({
+    super.position,
+  }) : super(
+          size: Vector2(18, 61),
+          anchor: Anchor.center,
+        );
+
+  static const enemySize = 40.0;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('green_bottle.png');
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * 300;
+
+    if (position.y > game.size.y) {
+      removeFromParent();
+    }
+  }
+}
+
+class soda_can extends SpriteComponent with HasGameRef<recycleSorter> {
+  soda_can({
+    super.position,
+  }) : super(
+          size: Vector2(19, 62),
+          anchor: Anchor.center,
+        );
+
+  static const enemySize = 40.0;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('red_soda_can.png');
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * 300;
+
+    if (position.y > game.size.y) {
+      removeFromParent();
+    }
+  }
+}
+
+class newspaper extends SpriteComponent with HasGameRef<recycleSorter> {
+  newspaper({
+    super.position,
+  }) : super(
+          size: Vector2(56, 62),
+          anchor: Anchor.center,
+        );
+
+  static const enemySize = 40.0;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    sprite = await gameRef.loadSprite('newspaper.png');
   }
 
   @override
