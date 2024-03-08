@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 import 'dart:math';
+import 'package:flame/collisions.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
@@ -16,7 +17,8 @@ void main() {
   runApp(GameWidget(game: recycleSorter()));
 }
 
-class recycleSorter extends FlameGame with PanDetector, KeyboardEvents {
+class recycleSorter extends FlameGame
+    with PanDetector, KeyboardEvents, HasCollisionDetection {
   late Player player;
   @override
   Future<void> onLoad() async {
@@ -154,6 +156,8 @@ class beer_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('beer_bottle.png');
+
+    add(RectangleHitbox());
   }
 
   @override
