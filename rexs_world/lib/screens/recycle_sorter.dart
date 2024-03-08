@@ -7,6 +7,7 @@ import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/palette.dart';
 
 import 'package:flutter/material.dart';
 //import 'package:flutter_animate/flutter_animate.dart';
@@ -20,6 +21,10 @@ void main() {
 class recycleSorter extends FlameGame
     with PanDetector, KeyboardEvents, HasCollisionDetection {
   late Player player;
+  int score = 0;
+
+  late TextComponent score_text;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad(); // loads the game
@@ -28,6 +33,15 @@ class recycleSorter extends FlameGame
 
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
+
+    score_text = TextComponent(
+        text: 'Score: $score',
+        position: Vector2(5, 5),
+        anchor: Anchor.topLeft,
+        textRenderer: TextPaint(
+            style: TextStyle(color: BasicPalette.black.color, fontSize: 50)));
+
+    add(score_text);
 
     add(
       SpawnComponent(
@@ -101,7 +115,7 @@ class Player extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
     sprite = await gameRef.loadSprite('recycle_bin.png');
     position = Vector2(gameRef.size.x / 2, gameRef.size.y);
-    add(RectangleHitbox());
+    add(RectangleHitbox(isSolid: true));
   }
 
   void moveLeft() {
@@ -162,6 +176,8 @@ class plastic_bottle extends SpriteComponent
 
     if (other is plastic_bottle) {
       removeFromParent(); //This helps to remove the plastic bottle from the screen
+      other.removeFromParent();
+      gameRef.score += 20;
     }
   }
 }
