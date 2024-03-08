@@ -32,30 +32,10 @@ class recycleSorter extends FlameGame
     add(
       SpawnComponent(
         factory: (index) {
-          return beer_bottle();
-        },
-        period: 1,
-        area: Rectangle.fromLTWH(0, 0, size.x, -beer_bottle.enemySize),
-      ),
-    );
-
-    add(
-      SpawnComponent(
-        factory: (index) {
           return plastic_bottle();
         },
         period: 1,
         area: Rectangle.fromLTWH(0, 0, size.x, -plastic_bottle.enemySize),
-      ),
-    );
-
-    add(
-      SpawnComponent(
-        factory: (index) {
-          return green_bottle();
-        },
-        period: 1,
-        area: Rectangle.fromLTWH(0, 0, size.x, -green_bottle.enemySize),
       ),
     );
 
@@ -121,6 +101,7 @@ class Player extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
     sprite = await gameRef.loadSprite('recycle_bin.png');
     position = Vector2(gameRef.size.x / 2, gameRef.size.y);
+    add(RectangleHitbox());
   }
 
   void moveLeft() {
@@ -141,38 +122,8 @@ class NatureBackground extends SpriteComponent with HasGameRef<recycleSorter> {
   }
 }
 
-class beer_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
-  beer_bottle({
-    super.position,
-  }) : super(
-          size: Vector2(18, 61),
-          anchor: Anchor.center,
-        );
-
-  static const enemySize = 40.0;
-
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-
-    sprite = await gameRef.loadSprite('beer_bottle.png');
-
-    add(RectangleHitbox());
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    position.y += dt * 300;
-
-    if (position.y > game.size.y) {
-      removeFromParent();
-    }
-  }
-}
-
-class plastic_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
+class plastic_bottle extends SpriteComponent
+    with HasGameRef<recycleSorter>, CollisionCallbacks {
   plastic_bottle({
     super.position,
   }) : super(
@@ -187,45 +138,30 @@ class plastic_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('plastic_bottle.png');
+
+    add(RectangleHitbox());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * 300;
+    position.y += dt * 350;
 
     if (position.y > game.size.y) {
       removeFromParent();
     }
   }
-}
-
-class green_bottle extends SpriteComponent with HasGameRef<recycleSorter> {
-  green_bottle({
-    super.position,
-  }) : super(
-          size: Vector2(18, 61),
-          anchor: Anchor.center,
-        );
-
-  static const enemySize = 40.0;
 
   @override
-  Future<void> onLoad() async {
-    await super.onLoad();
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
 
-    sprite = await gameRef.loadSprite('green_bottle.png');
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    position.y += dt * 300;
-
-    if (position.y > game.size.y) {
-      removeFromParent();
+    if (other is plastic_bottle) {
+      removeFromParent(); //This helps to remove the plastic bottle from the screen
     }
   }
 }
@@ -245,13 +181,14 @@ class soda_can extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('red_soda_can.png');
+    add(RectangleHitbox());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * 300;
+    position.y += dt * 350;
 
     if (position.y > game.size.y) {
       removeFromParent();
@@ -274,13 +211,14 @@ class newspaper extends SpriteComponent with HasGameRef<recycleSorter> {
     await super.onLoad();
 
     sprite = await gameRef.loadSprite('newspaper.png');
+    add(RectangleHitbox());
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    position.y += dt * 300;
+    position.y += dt * 350;
 
     if (position.y > game.size.y) {
       removeFromParent();
