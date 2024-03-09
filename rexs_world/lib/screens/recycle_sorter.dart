@@ -34,15 +34,6 @@ class recycleSorter extends FlameGame
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
 
-    score_text = TextComponent(
-        text: 'Score: $score',
-        position: Vector2(5, 5),
-        anchor: Anchor.topLeft,
-        textRenderer: TextPaint(
-            style: TextStyle(color: BasicPalette.black.color, fontSize: 50)));
-
-    add(score_text);
-
     add(
       SpawnComponent(
         factory: (index) {
@@ -72,6 +63,22 @@ class recycleSorter extends FlameGame
         area: Rectangle.fromLTWH(0, 0, size.x, -newspaper.enemySize),
       ),
     );
+
+    score_text = TextComponent(
+        text: 'Score: $score',
+        position: Vector2(5, 5),
+        anchor: Anchor.topLeft,
+        textRenderer: TextPaint(
+            style: TextStyle(color: BasicPalette.black.color, fontSize: 50)));
+
+    add(score_text);
+
+    @override
+    void update(double dt) {
+      super.update(dt);
+      score_text.text = 'Score: $score';
+      print(score);
+    }
   }
 
   @override
@@ -174,9 +181,9 @@ class plastic_bottle extends SpriteComponent
   ) {
     super.onCollisionStart(intersectionPoints, other);
 
-    if (other is plastic_bottle) {
+    if (other is Player) {
       removeFromParent(); //This helps to remove the plastic bottle from the screen
-      other.removeFromParent();
+      //other.removeFromParent();
       gameRef.score += 20;
     }
   }
