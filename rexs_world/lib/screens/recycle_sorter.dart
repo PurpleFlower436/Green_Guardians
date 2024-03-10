@@ -236,6 +236,7 @@ class soda_can extends SpriteComponent
       //other.removeFromParent();
       gameRef.score += 10;
       gameRef.score_text.text = 'Score: ${gameRef.score}';
+      FlameAudio.play('caught_recyclable.wav');
     }
   }
 }
@@ -282,6 +283,7 @@ class newspaper extends SpriteComponent
       //other.removeFromParent();
       gameRef.score += 10;
       gameRef.score_text.text = 'Score: ${gameRef.score}';
+      FlameAudio.play('caught_recyclable.wav');
     }
   }
 }
