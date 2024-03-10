@@ -85,10 +85,10 @@ class recycleSorter extends FlameGame
 
   @override
   KeyEventResult onKeyEvent(
-    RawKeyEvent event,
+    KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    final isKeyDown = event is RawKeyDownEvent;
+    final isKeyDown = event is KeyDownEvent;
     // Determine if the key event is a key down event
 
     // Check if the left arrow key is pressed
@@ -189,6 +189,7 @@ class plastic_bottle extends SpriteComponent
       //other.removeFromParent();
       gameRef.score += 10;
       gameRef.score_text.text = 'Score: ${gameRef.score}';
+      FlameAudio.play('caught_recyclable.wav');
     }
   }
 }
