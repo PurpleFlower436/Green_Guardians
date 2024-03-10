@@ -85,6 +85,7 @@ flutter:
     - assets/images/cardboard_box.png
     - assets/images/foam_cup.png
     - assets/images/broken_cup.png
+    - assets/audio/caught_recyclable.wav
 
 
 
