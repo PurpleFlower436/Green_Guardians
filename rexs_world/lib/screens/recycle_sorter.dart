@@ -76,8 +76,6 @@ class recycleSorter extends FlameGame
     @override
     void update(double dt) {
       super.update(dt);
-      score_text.text = 'Score: $score';
-      print(score);
     }
   }
 
@@ -90,12 +88,13 @@ class recycleSorter extends FlameGame
     // Determine if the key event is a key down event
 
     // Check if the left arrow key is pressed
-    if (isKeyDown && keysPressed.contains(LogicalKeyboardKey.altLeft)) {
+    if (isKeyDown && keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
       // move player to the left
       player.moveLeft();
 
       // Check if right arrow key is pressed
-    } else if (isKeyDown && keysPressed.contains(LogicalKeyboardKey.altRight)) {
+    } else if (isKeyDown &&
+        keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
       // move player to the right
       player.moveRight();
       // Since we hadnled the key event, return handled
@@ -126,11 +125,11 @@ class Player extends SpriteComponent with HasGameRef<recycleSorter> {
   }
 
   void moveLeft() {
-    position.x -= 10;
+    position.x -= 100;
   }
 
   void moveRight() {
-    position.x += 10;
+    position.x += 100;
   }
 }
 
@@ -184,12 +183,14 @@ class plastic_bottle extends SpriteComponent
     if (other is Player) {
       removeFromParent(); //This helps to remove the plastic bottle from the screen
       //other.removeFromParent();
-      gameRef.score += 20;
+      gameRef.score += 10;
+      gameRef.score_text.text = 'Score: ${gameRef.score}';
     }
   }
 }
 
-class soda_can extends SpriteComponent with HasGameRef<recycleSorter> {
+class soda_can extends SpriteComponent
+    with HasGameRef<recycleSorter>, CollisionCallbacks {
   soda_can({
     super.position,
   }) : super(
@@ -217,9 +218,25 @@ class soda_can extends SpriteComponent with HasGameRef<recycleSorter> {
       removeFromParent();
     }
   }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+
+    if (other is Player) {
+      removeFromParent(); //This helps to remove the plastic bottle from the screen
+      //other.removeFromParent();
+      gameRef.score += 10;
+      gameRef.score_text.text = 'Score: ${gameRef.score}';
+    }
+  }
 }
 
-class newspaper extends SpriteComponent with HasGameRef<recycleSorter> {
+class newspaper extends SpriteComponent
+    with HasGameRef<recycleSorter>, CollisionCallbacks {
   newspaper({
     super.position,
   }) : super(
@@ -245,6 +262,21 @@ class newspaper extends SpriteComponent with HasGameRef<recycleSorter> {
 
     if (position.y > game.size.y) {
       removeFromParent();
+    }
+  }
+
+  @override
+  void onCollisionStart(
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
+    super.onCollisionStart(intersectionPoints, other);
+
+    if (other is Player) {
+      removeFromParent(); //This helps to remove the plastic bottle from the screen
+      //other.removeFromParent();
+      gameRef.score += 10;
+      gameRef.score_text.text = 'Score: ${gameRef.score}';
     }
   }
 }
