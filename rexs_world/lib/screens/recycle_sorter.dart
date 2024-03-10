@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 import 'dart:math';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
@@ -30,6 +31,9 @@ class recycleSorter extends FlameGame
     await super.onLoad(); // loads the game
 
     player = Player();
+
+    await FlameAudio.audioCache.loadAll(
+        ['game_level_music.wav', 'caught_recyclable.wav', 'catch_leaves.wav']);
 
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
