@@ -87,6 +87,9 @@ flutter:
     - assets/images/foam_cup.png
     - assets/images/broken_cup.png
     - assets/audio/caught_recyclable.wav
+    - assets/audio/game_level_music.wav
+    - assets/audio/catch_leaves.wav
+
 
 
 
