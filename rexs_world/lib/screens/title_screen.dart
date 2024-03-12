@@ -27,7 +27,12 @@ class titleScreen extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => beg_of_story()));
             },
-            child: Text("Start"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromARGB(255, 166, 231, 151),
+            ),
+            child: Text("Start",
+                style: TextStyle(
+                    fontSize: 50, color: Color.fromARGB(255, 238, 176, 83))),
           ),
         ],
       ),
