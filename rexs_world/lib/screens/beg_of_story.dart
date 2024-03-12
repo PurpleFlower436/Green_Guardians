@@ -36,7 +36,8 @@ class beg_of_story extends StatelessWidget {
             ),
             child: Text(
               "Play",
-              style: TextStyle(fontSize: 50),
+              style: TextStyle(
+                  fontSize: 50, color: Color.fromARGB(255, 238, 176, 83)),
             ),
           )
         ],
