@@ -1,15 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ui';
-import 'dart:math';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
+
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/palette.dart';
-
+import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flame/input.dart';
@@ -24,7 +23,12 @@ class recycleSorter extends FlameGame
   late Player player;
   int score = 0;
 
+  late Timer _timer;
+  int _remainingTime = 40;
+
   late TextComponent score_text;
+
+  late TextComponent time_counter_text;
 
   @override
   Future<void> onLoad() async {
@@ -34,6 +38,8 @@ class recycleSorter extends FlameGame
 
     await FlameAudio.audioCache.loadAll(
         ['game_level_music.wav', 'caught_recyclable.wav', 'catch_leaves.wav']);
+
+    //FlameAudio.loop("game_level_music.wav");
 
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
@@ -73,14 +79,33 @@ class recycleSorter extends FlameGame
         position: Vector2(5, 5),
         anchor: Anchor.topLeft,
         textRenderer: TextPaint(
-            style: TextStyle(color: BasicPalette.black.color, fontSize: 50)));
+            style: TextStyle(color: BasicPalette.black.color, fontSize: 30)));
 
     add(score_text);
 
-    @override
-    void update(double dt) {
-      super.update(dt);
-    }
+    time_counter_text = TextComponent(
+        text: 'Time: $_remainingTime secs',
+        position: Vector2(205, 5), // You can adjust this position
+        textRenderer: TextPaint(
+            style: TextStyle(color: BasicPalette.black.color, fontSize: 30)));
+
+    add(time_counter_text);
+
+    _timer = Timer(1, repeat: true, onTick: () {
+      if (_remainingTime == 0) {
+        pauseEngine();
+      } else {
+        _remainingTime -= 1;
+        time_counter_text.text = 'Time: $_remainingTime secs';
+      }
+    });
+    _timer.start();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    _timer.update(dt);
   }
 
   @override
