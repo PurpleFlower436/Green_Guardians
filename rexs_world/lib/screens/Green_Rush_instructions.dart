@@ -8,8 +8,7 @@ class GreenRushInstructions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: C
-    )
+    // TODO: implement build
+    return Scaffold();
   }
 }
