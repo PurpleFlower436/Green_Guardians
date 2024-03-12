@@ -17,7 +17,7 @@ class beg_of_story extends StatelessWidget {
           Center(
               child: Text(
             """ Hello! My name is Dash and my world is in danger. My home is in a beautiful land where ne and my animal friends live in peace and harmony. Our town runs on sustainability which allows us to ensure our town is safe from dangers. But I heard that some evil construction workers want to bulldoze our town and build a mansion on it. 
-              Help me stop them by completing these 2 challenges so we can save my home!""",
+              Help me stop them by completing these 2 challenges so we can save my home! If your on Android, use your fingers to swipe the recycling bin left and right to catch the falling recyclable objects.""",
             style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
