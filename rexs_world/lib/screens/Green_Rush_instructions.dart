@@ -6,7 +6,9 @@ import 'package:rexs_world/screens/Green_Rush_Load_Screen.dart';
 import 'package:rexs_world/screens/recycle_sorter.dart';
 
 class Green_Rush_Instructions extends StatelessWidget {
-  const Green_Rush_Instructions({super.key});
+  final recycleSorter game;
+  const Green_Rush_Instructions({Key? key, required this.game})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

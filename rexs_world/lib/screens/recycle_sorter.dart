@@ -15,9 +15,6 @@ import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
 import 'package:rexs_world/screens/Green_Rush_Instructions.dart';
 
-final recycleSorter _recycleSorterGame = recycleSorter();
-final green_rush_instructions_identifier = 'GreenRushInstructions';
-
 void main() {
   runApp(GameWidget(game: recycleSorter()));
 }
@@ -34,12 +31,21 @@ class recycleSorter extends FlameGame
 
   late TextComponent time_counter_text;
 
+  final Map<String, Widget Function(BuildContext, recycleSorter)>
+      overlayBuilderMap = {
+    'GreenRushInstructions': (_, recycleSorter) => Green_Rush_Instructions(
+          game: recycleSorter,
+        )
+  };
+
   @override
   Future<void> onLoad() async {
     await super.onLoad(); // loads the game
 
+    // Creates an instance of player
     player = Player();
 
+    // loads game sound effects
     await FlameAudio.audioCache.loadAll(
         ['game_level_music.wav', 'caught_recyclable.wav', 'catch_leaves.wav']);
 
@@ -95,26 +101,25 @@ class recycleSorter extends FlameGame
 
     add(time_counter_text);
 
-    Widget build(BuildContext context) {
-      return GameWidget(
-        game: _recycleSorterGame,
-        overlayBuilderMap: {
-          'GreenRushInstructions': (BuildContext context, recycleSorter game) {
-            return Text('the instructions were added');
-          },
-        },
-      );
-    }
-
     _timer = Timer(1, repeat: true, onTick: () {
       if (_remainingTime == 0) {
-        overlays.add(green_rush_instructions_identifier);
+        pauseEngine();
+        //overlays.add('GreenRushInstructions');
       } else {
         _remainingTime -= 1;
         time_counter_text.text = 'Time: $_remainingTime secs';
       }
     });
     _timer.start();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GameWidget(
+      game: this,
+      overlayBuilderMap:
+          overlayBuilderMap, // Pass the overlay builder map to the GameWidget
+    );
   }
 
   @override
