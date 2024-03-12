@@ -14,7 +14,7 @@ class titleScreen extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              "Rexs World",
+              "Green Guardians: Protect Dash's Home",
               style: TextStyle(
                   fontSize: 40,
                   fontFamily: 'Playfair Display',
