@@ -2,15 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:rexs_world/screens/Green_Rush_Load_Screen.dart';
 import 'package:rexs_world/screens/recycle_sorter.dart';
 
-class GreenRushInstructions extends StatelessWidget {
-  //static const String ID = 'GreenRushInstructions';
-  final recycleSorter game;
+class Green_Rush_Instructions extends StatelessWidget {
+  const Green_Rush_Instructions({super.key});
 
-  const GreenRushInstructions({super.key, required this.game});
-
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +16,9 @@ class GreenRushInstructions extends StatelessWidget {
         children: [
           Center(
               child: Text(
-            """ Hello! My name is Dash and my world is in danger. My home is in a beautiful land where ne and my animal friends live in peace and harmony. Our town runs on sustainability which allows us to ensure our town is safe from dangers. But I heard that some evil construction workers want to bulldoze our town and build a mansion on it. 
-              Help me stop them by completing these 2 challenges so we can save my home!""",
+            """ Great work Green Guardian! We scared the construction workers a little bit but they still have one more trick up their sleeves. 
+            They found out that we don't use plastic bags at our grocery stores. We use reusable bags and if anyone forgets their bag then we give them a free one. 
+            They decided to get rid of our reusable bags and replace them with plastic ones. You have 40 seconds to help me stop them by tapping on all of the plastic bags as fast as possible. """,
             style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
@@ -32,8 +30,10 @@ class GreenRushInstructions extends StatelessWidget {
           SizedBox(height: 90),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => GameScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Green_Rush_Load_Screen()));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 166, 231, 151),
@@ -48,17 +48,4 @@ class GreenRushInstructions extends StatelessWidget {
       ),
     );
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
 }

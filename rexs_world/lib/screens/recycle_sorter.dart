@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
-import 'package:rexs_world/screens/Green_Rush_instructions.dart';
+import 'package:rexs_world/screens/Green_Rush_Instructions.dart';
 
 final recycleSorter _recycleSorterGame = recycleSorter();
 final green_rush_instructions_identifier = 'GreenRushInstructions';
