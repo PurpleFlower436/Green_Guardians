@@ -25,7 +25,7 @@ class recycleSorter extends FlameGame
   int score = 0;
 
   late Timer _timer;
-  int _remainingTime = 5;
+  int _remainingTime = 40;
 
   late TextComponent score_text;
 
@@ -54,6 +54,7 @@ class recycleSorter extends FlameGame
     add(NatureBackground()); //This adds the nature background to the screen
     add(player); //This adds the recycle bin sprite to the screen
 
+    // Make the plastic bottle game art fall down the screen
     add(
       SpawnComponent(
         factory: (index) {
@@ -64,6 +65,7 @@ class recycleSorter extends FlameGame
       ),
     );
 
+    // Makes the soda can game art fall down the screen
     add(
       SpawnComponent(
         factory: (index) {
@@ -74,6 +76,7 @@ class recycleSorter extends FlameGame
       ),
     );
 
+    // Makes the newspaper game art fall down the screen
     add(
       SpawnComponent(
         factory: (index) {
@@ -84,6 +87,7 @@ class recycleSorter extends FlameGame
       ),
     );
 
+    //This is a text component that styles the Score text
     score_text = TextComponent(
         text: 'Score: $score',
         position: Vector2(5, 5),
