@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:rexs_world/screens/recycle_sorter.dart';
 import 'package:rexs_world/screens/recyle_sorter_load_screen.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class beg_of_story extends StatelessWidget {
   const beg_of_story({super.key});
@@ -14,15 +15,14 @@ class beg_of_story extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text(
-              """ Hello! My name is Dash and my world is in danger. My home is in a beautiful land where ne and my animal friends live in peace and harmony. Our town runs on sustainability which allows us to ensure our town is safe from dangers. But I heard that some evil construction workers want to bulldoze our town and build a mansion on it. 
+              child: Text(
+            """ Hello! My name is Dash and my world is in danger. My home is in a beautiful land where ne and my animal friends live in peace and harmony. Our town runs on sustainability which allows us to ensure our town is safe from dangers. But I heard that some evil construction workers want to bulldoze our town and build a mansion on it. 
               Help me stop them by completing these 2 challenges so we can save my home!""",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
             ),
-          ),
+          ).animate().scale(duration: 500.ms)),
           Image(
               image: AssetImage('assets/images/Dashatar_Bonus_NakedDash.png')),
           SizedBox(height: 90),
