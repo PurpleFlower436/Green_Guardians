@@ -13,6 +13,10 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
+import 'package:rexs_world/screens/Green_Rush_instructions.dart';
+
+final recycleSorter _recycleSorterGame = recycleSorter();
+final green_rush_instructions_identifier = 'GreenRushInstructions';
 
 void main() {
   runApp(GameWidget(game: recycleSorter()));
@@ -24,7 +28,7 @@ class recycleSorter extends FlameGame
   int score = 0;
 
   late Timer _timer;
-  int _remainingTime = 40;
+  int _remainingTime = 5;
 
   late TextComponent score_text;
 
@@ -91,9 +95,20 @@ class recycleSorter extends FlameGame
 
     add(time_counter_text);
 
+    Widget build(BuildContext context) {
+      return GameWidget(
+        game: _recycleSorterGame,
+        overlayBuilderMap: {
+          'GreenRushInstructions': (BuildContext context, recycleSorter game) {
+            return Text('the instructions were added');
+          },
+        },
+      );
+    }
+
     _timer = Timer(1, repeat: true, onTick: () {
       if (_remainingTime == 0) {
-        pauseEngine();
+        overlays.add(green_rush_instructions_identifier);
       } else {
         _remainingTime -= 1;
         time_counter_text.text = 'Time: $_remainingTime secs';

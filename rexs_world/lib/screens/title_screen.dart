@@ -16,9 +16,9 @@ class titleScreen extends StatelessWidget {
             child: Text(
               "Rexs World",
               style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: 40,
+                  fontFamily: 'Playfair Display',
+                  color: Color.fromARGB(255, 238, 176, 83)),
             ),
           ),
           SizedBox(height: 160),
@@ -27,7 +27,7 @@ class titleScreen extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => beg_of_story()));
             },
-            child: Text("Play"),
+            child: Text("Start"),
           ),
         ],
       ),
