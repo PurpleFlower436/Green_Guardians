@@ -23,6 +23,7 @@ class beg_of_story extends StatelessWidget {
               ),
             ),
           ),
+          Image(image: AssetImage('assets/'))
           SizedBox(height: 90),
           ElevatedButton(
             onPressed: () {
